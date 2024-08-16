@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: New Docker Image CI
 
 on:
   push:
@@ -18,6 +18,9 @@ jobs:
         IMAGE_TAG=bexy:$(date +%s)
         docker build . --file Dockerfile --tag $IMAGE_TAG
         echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+
+    - name: List Docker images
+      run: docker images
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
